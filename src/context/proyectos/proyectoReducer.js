@@ -4,7 +4,7 @@ import {
   AGREGAR_PROYECTO,
   VALIDAR_FORMULARIO,
   PROYECTO_ACTUAL,
-  ELIMINAR_PROYECTO,
+  ELIMINAR_PROYECTO
 } from "../../types";
 
 export default (state, action) => {
@@ -46,6 +46,8 @@ export default (state, action) => {
         ),
         proyecto: null
       };
+
+      
     default:
       return state;
   }

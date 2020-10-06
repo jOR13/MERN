@@ -31,17 +31,15 @@ const ListadoTareas = () => {
       <h2>Proyecto: {proyectoActual.nombre} </h2>
 
       <ul className="listado-tareas">
-        {tareasproyecto.length === 0 ? (
-          <li className="tarea">
-            <p>No hay tareas</p>
-          </li>
-        ) : (
+        {tareasproyecto.length === 0 
+        ? <li className="tarea"><p>No hay tareas</p></li>
+         : 
           <TransitionGroup>
-            {tareasproyecto.map(tarea => (
+            {tareasproyecto.map((tarea) => (
               <CSSTransition 
-                key={tarea.id} 
-                timeout={200} 
-                className="tarea"
+              key={tarea.id} 
+              timeout={200} 
+              classNames="tarea"
               >
                 <Tarea 
                   tarea={tarea} 
@@ -49,15 +47,14 @@ const ListadoTareas = () => {
               </CSSTransition>
             ))}
           </TransitionGroup>
-        )}
+        }
       </ul>
 
       <button
         type="button"
         className="btn btn-eliminar"
         onClick={OnclickEliminarProyecto}
-      >
-        Eliminar proyecto &times;
+      >Eliminar proyecto &times;
       </button>
     </Fragment>
   );

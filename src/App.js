@@ -5,7 +5,6 @@ import NuevaCuenta from "./components/auth/NuevaCuenta";
 import Proyectos from "./components/proyectos/Proyectos";
 import ProyectoState from "./context/proyectos/proyectoState";
 import TareaState from "./context/tareas/tareaState";
-import TareasState from "./context/tareas/tareaState";
 
 function App() {
   return (
