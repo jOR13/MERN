@@ -23,7 +23,7 @@ const ListadoTareas = () => {
   //Eliminar proyecto
 
   const OnclickEliminarProyecto = () => {
-    eliminarProyecto(proyectoActual.id);
+    eliminarProyecto(proyectoActual._id);
   };
 
   return (
@@ -31,30 +31,27 @@ const ListadoTareas = () => {
       <h2>Proyecto: {proyectoActual.nombre} </h2>
 
       <ul className="listado-tareas">
-        {tareasproyecto.length === 0 
-        ? <li className="tarea"><p>No hay tareas</p></li>
-         : 
+        {tareasproyecto.length === 0 ? (
+          <li className="tarea">
+            <p>No hay tareas</p>
+          </li>
+        ) : (
           <TransitionGroup>
-            {tareasproyecto.map((tarea) => (
-              <CSSTransition 
-              key={tarea.id} 
-              timeout={200} 
-              classNames="tarea"
-              >
-                <Tarea 
-                  tarea={tarea} 
-                />
+            {tareasproyecto.map((tarea, index) => (
+              <CSSTransition key={index} timeout={200} classNames="tarea">
+                <Tarea tarea={tarea} />
               </CSSTransition>
             ))}
           </TransitionGroup>
-        }
+        )}
       </ul>
 
       <button
         type="button"
         className="btn btn-eliminar"
         onClick={OnclickEliminarProyecto}
-      >Eliminar proyecto &times;
+      >
+        Eliminar proyecto &times;
       </button>
     </Fragment>
   );

@@ -21,7 +21,7 @@ const seleccionarProyecto = id => {
     return (
 
         <li>
-            <button type="button" className="btn btn-blank" onClick={() => seleccionarProyecto(proyecto.id)}>
+            <button type="button" className="btn btn-blank" onClick={() => seleccionarProyecto(proyecto._id)}>
                 {proyecto.nombre}
             </button>
         </li>

@@ -18,6 +18,7 @@ const AuthState = (props) => {
     autenticado: null,
     usuario: null,
     mensaje: null,
+    cargando: true 
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -33,7 +34,7 @@ const AuthState = (props) => {
       });
 
       //Obtener el user
-      usuarioAuntenticado();
+      usuarioAutenticado();
     } catch (error) {
       //console.log(error.response.data.msg)
       const alerta = {
@@ -48,7 +49,7 @@ const AuthState = (props) => {
   };
 
   //Retorna el usuario autenticado
-  const usuarioAuntenticado = async () => {
+  const usuarioAutenticado = async () => {
     const token = localStorage.getItem("token");
     if (token) {
       //todo: FUNCION PARA ENVIAR EL TOKEN POR HEADERS
@@ -79,7 +80,7 @@ const AuthState = (props) => {
         payload: respuesta.data,
       });
       //Obtener el user
-      usuarioAuntenticado();
+      usuarioAutenticado();
       //console.log(respuesta);
     } catch (error) {
       //console.log(error.response.data.msg)
@@ -94,6 +95,13 @@ const AuthState = (props) => {
     }
   };
 
+  //Cierra session
+const cerrarSesion = () => {
+  dispatch({
+    type: CERRAR_SESION
+  })
+}
+
   return (
     <AuthContext.Provider
       value={{
@@ -101,12 +109,20 @@ const AuthState = (props) => {
         autenticado: state.autenticado,
         usuario: state.usuario,
         mensaje: state.mensaje,
+        cargando: state.cargando,
         registrarUsuario,
         iniciarSesion,
+        usuarioAutenticado,
+        cerrarSesion
       }}
     >
       {props.children}
     </AuthContext.Provider>
   );
 };
+
+
+
+
+
 export default AuthState;
